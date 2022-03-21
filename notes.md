@@ -24,3 +24,18 @@ Double(int)
 let double = 3.0
 Int(double)
 ```
+
+## Day 2
+
+String interpolation
+
+- two ways to do it
+
+```
+"string one" + "string two"
+
+// or
+
+let stringTwo = "string two"
+"string one and \(stringTwo)"
+```
