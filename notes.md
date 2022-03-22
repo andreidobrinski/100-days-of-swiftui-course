@@ -68,3 +68,12 @@ enum Weekday {
     case monday, tuesday, wednesday, thursday, friday
 }
 ```
+
+## Day 4
+
+When to use type annotations (vs type inference)
+When:
+
+1. Swift can't figure out what type should be used
+2. You want Swift to use a different type from its default
+3. You don't want to assign a value to the variable at the time of its declaration
