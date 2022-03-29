@@ -77,3 +77,48 @@ When:
 1. Swift can't figure out what type should be used
 2. You want Swift to use a different type from its default
 3. You don't want to assign a value to the variable at the time of its declaration
+
+## Day 5
+
+Comparing enums
+
+```
+enum Sizes: Comparable {
+    case small
+    case medium
+    case large
+}
+
+let first = Sizes.small
+let second = Sizes.large
+print(first < second)
+```
+
+prints true because small comes before large in thee enum case
+
+Switch Statements
+
+- automatically return at the first case they catch
+- `fallthrough` can be used in the case so that Swift does not return out of the switch statement
+
+```
+let day = 5
+print("My true love gave to me…")
+
+switch day {
+case 5:
+    print("5 golden rings")
+    fallthrough
+case 4:
+    print("4 calling birds")
+    fallthrough
+case 3:
+    print("3 French hens")
+    fallthrough
+case 2:
+    print("2 turtle doves")
+    fallthrough
+default:
+    print("A partridge in a pear tree")
+}
+```
