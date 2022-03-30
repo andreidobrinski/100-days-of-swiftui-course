@@ -139,3 +139,74 @@ for os in platforms {
 
 - `continue` will exit out of the current iteration of the loop and start the next iteration
 - `break` will exit out of the loop entirely
+
+## Day 7
+
+Functions
+
+- arguments must be called in the same order that parameters are defined
+- applies with named parameters as well
+
+Returning Tuples from a function
+
+- no need to name tuples since Swift already knows what the name will be
+
+```
+func getUser() -> (firstName: String, lastName: String) {
+    (firstName: "Taylor", lastName: "Swift")
+}
+
+// can also be written as
+
+func getUser() -> (firstName: String, lastName: String) {
+    ("Taylor", "Swift")
+}
+```
+
+- the elements in the tuple don't necessarily need a name:
+
+```
+func getUser() -> (String, String) {
+    ("Taylor", "Swift")
+}
+
+let user = getUser()
+print("Name: \(user.0) \(user.1)")
+```
+
+- named tuples can be destructured like a dictionary
+
+```
+func getUser() -> (firstName: String, lastName: String) {
+    (firstName: "Taylor", lastName: "Swift")
+}
+
+let user = getUser()
+let firstName = user.firstName
+let lastName = user.lastName
+
+print("Name: \(firstName) \(lastName)")
+```
+
+Opting out of naming a parameter in a function:
+
+- use an underscore before the parameter name
+
+```
+func isUppercase(_ string: String) -> Bool {
+    string == string.uppercased()
+}
+
+let string = "HELLO, WORLD"
+let result = isUppercase(string)
+```
+
+Renaming the parameter
+
+- prepend the param name with the name you'd prefer to use externally
+
+```
+func printTimesTables(for number: Int) {
+```
+
+- The function can be called with with `printTimesTables(for: 5)` and `number` can still be used in the function body
