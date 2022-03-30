@@ -210,3 +210,41 @@ func printTimesTables(for number: Int) {
 ```
 
 - The function can be called with with `printTimesTables(for: 5)` and `number` can still be used in the function body
+
+## Day 8
+
+Adding default values for function params:
+
+```
+func printTimesTables(for number: Int, end: Int = 12) {
+```
+
+Functions that may throw and error have return types of `throws -> type`:
+
+```
+func checkPassword(_ password: String) throws -> String {
+```
+
+`try` must be written before calling a function that might throw an error
+
+Multiple catch blocks can be chained based on the error type:
+
+```
+let string = "12345"
+
+do {
+    let result = try checkPassword(string)
+    print("Password rating: \(result)")
+} catch PasswordError.short {
+    print("Please use a longer password.")
+} catch PasswordError.obvious {
+    print("I have the same combination on my luggage!")
+} catch {
+    print("There was an error.")
+}
+```
+
+A function can either handle its own errors or use a `throw` to send them back
+
+- aka "bubbling up errors"
+- aka "error propagation"
