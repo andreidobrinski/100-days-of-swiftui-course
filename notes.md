@@ -122,3 +122,20 @@ default:
     print("A partridge in a pear tree")
 }
 ```
+
+## Day 6
+
+Loop over an array
+
+- syntax:
+
+```
+let platforms = ["iOS", "macOS", "tvOS", "watchOS"]
+
+for os in platforms {
+    print("Swift works great on \(os).")
+}
+```
+
+- `continue` will exit out of the current iteration of the loop and start the next iteration
+- `break` will exit out of the loop entirely
