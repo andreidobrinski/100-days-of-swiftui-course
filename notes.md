@@ -248,3 +248,139 @@ A function can either handle its own errors or use a `throw` to send them back
 
 - aka "bubbling up errors"
 - aka "error propagation"
+
+## Day 9
+
+Closure Expression
+
+```
+let sayHello = { (name: String) -> String in
+    "Hi \(name)!"
+}
+```
+
+- `in` marks the end of the parameters and return type, as well as the start of the closure body itself
+
+Functions can be copied and their signatures can be changed:
+
+```
+func getUserData(for id: Int) -> String {
+    if id == 1989 {
+        return "Taylor Swift"
+    } else {
+        return "Anonymous"
+    }
+}
+
+let data: (Int) -> String = getUserData
+let user = data(1989)
+print(user)
+```
+
+- `data(1989)` doesn't need to be `data(for: 1989)`
+
+It's not necessary to type args when calling in a closure:
+
+```
+let captainFirstTeam = team.sorted(by: { name1, name2 in
+```
+
+- because Swift already knows that `name1` and `name2` are strings, from when `sorted` was defined
+
+Trailing closure syntax
+
+- no need to pass `by`, we can start the closure directly
+
+```
+let captainFirstTeam = team.sorted { name1, name2 in
+    if name1 == "Suzanne" {
+        return true
+    } else if name2 == "Suzanne" {
+        return false
+    }
+
+    return name1 < name2
+}
+```
+
+Shorthand syntax for closures
+
+- instead of defining `name1` and `name2`, we can use the shorthand syntax to use the numbered args
+
+```
+let captainFirstTeam = team.sorted {
+    if $0 == "Suzanne" {
+        return true
+    } else if $1 == "Suzanne" {
+        return false
+    }
+
+    return $0 < $1
+}
+```
+
+Trailing closures
+
+```
+// function definition
+
+func animate(duration: Double, animations: () -> Void) {
+    print("Starting a \(duration) second animation…")
+    animations()
+}
+
+// invocation without trailing closures
+
+animate(duration: 3, animations: {
+    print("Fade out the image")
+})
+
+// invocation with trailing closures
+
+animate(duration: 3) {
+    print("Fade out the image")
+}
+```
+
+Accepting functions as arguments
+
+```
+func makeArray(size: Int, using generator: () -> Int) -> [Int] {
+    var numbers = [Int]()
+
+    for _ in 0..<size {
+        let newNumber = generator()
+        numbers.append(newNumber)
+    }
+
+    return numbers
+}
+```
+
+- the second arg is a function that accepts no params
+
+Functions as args with trailing closures
+
+```
+// fn definition
+
+func doImportantWork(first: () -> Void, second: () -> Void, third: () -> Void) {
+    print("About to start first work")
+    first()
+    print("About to start second work")
+    second()
+    print("About to start third work")
+    third()
+    print("Done!")
+}
+
+// invocation
+
+doImportantWork {
+    print("This is the first work")
+} second: {
+    print("This is the second work")
+} third: {
+    print("This is the third work")
+}
+```
