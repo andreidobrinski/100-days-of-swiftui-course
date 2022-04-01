@@ -384,3 +384,69 @@ doImportantWork {
     print("This is the third work")
 }
 ```
+
+## Day 10
+
+Structs
+
+- functions defined in a struct that read data are fine as is
+- functions that change data must be marked with a `mutating` keyword
+
+```
+mutating func takeVacation(days: Int) {
+```
+
+- the struct must then be assigned to a `var` because a `let` won't build if it has a mutating function
+
+```
+var archer = Employee(name: "Sterling Archer", vacationRemaining: 14)
+```
+
+- variables and constants that belong to structs are called **properties**
+- functions that belong to structs are called **methods**
+- when we create a constant or a variable out of a struct, we create an **instance**
+- when we create an instance we do so with an **initializer** `Album(// initializer)`
+
+Computed properties with a getter and setter
+
+```
+var vacationRemaining: Int {
+    get {
+        vacationAllocated - vacationTaken
+    }
+
+    set {
+        vacationAllocated = vacationTaken + newValue
+    }
+}
+```
+
+- `newValue` is automatically provided by Swift
+- it stores whatever value the user was trying to assign to the property
+
+willSet and didSet
+
+- runs before or after a property is set
+- the following code with run the print statement after score was set
+
+```
+struct Game {
+    var score = 0 {
+        didSet {
+            print("Score is now \(score)")
+        }
+    }
+}
+
+var game = Game()
+game.score += 10
+game.score -= 3
+game.score += 1
+```
+
+- willSet runs before the new value is set
+
+Initializers
+
+- all properties must have a value by the time the initializer ends
+- you can add multiple initializers
