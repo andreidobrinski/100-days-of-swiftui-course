@@ -503,3 +503,69 @@ self vs Self
 
 - self is current value of the struct
 - Self refers to the current type
+
+## Day 12
+
+Structs v Classes
+
+- Similarities
+  - create and name them
+  - properties, methods, access control, property observers
+  - custom initializers
+- Differences
+  - only classes inherit
+  - swift won't automatically add a memberwise initializer for classes
+  - when you copy a class, both copies share the same data
+  - when the final copy of a class is destroyed, Swift runs a deinitializer
+  - even if you make a class constant, you can still change it's properties that are variables
+
+Inheritance
+
+- Developer inherits from Employee
+
+```
+class Developer: Employee {
+```
+
+Override
+
+- changing a method from the parent class involves the `override` keyword
+
+```
+override func printSummary() {}
+```
+
+Final
+
+- the `final` keyword signifies that the class does not support inheritance
+- the class itself can still inherit from other classes
+- other classes cannot inherit from a final class
+
+Initializing the superclass' initializer
+
+- Car needs to be initialized with isConvertible
+- Vehicle, the superclass, needs to be initialized with isElectric
+
+```
+class Car: Vehicle {
+    let isConvertible: Bool
+
+    init(isElectric: Bool, isConvertible: Bool) {
+        self.isConvertible = isConvertible
+        super.init(isElectric: isElectric)
+    }
+}
+```
+
+Deinit
+
+- gets called when the class is destroyed
+- gets run when the final copy of the class is destroyed
+- we don't call them directly, calling them gets handled by the system
+
+Notes on constant instance and property
+
+- Constant instance, constant property – a signpost that always points to the same user, who always has the same name.
+- Constant instance, variable property – a signpost that always points to the same user, but their name can change.
+- Variable instance, constant property – a signpost that can point to different users, but their names never change.
+- Variable instance, variable property – a signpost that can point to different users, and those users can also change their names.
