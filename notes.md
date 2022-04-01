@@ -450,3 +450,56 @@ Initializers
 
 - all properties must have a value by the time the initializer ends
 - you can add multiple initializers
+
+## Day 11
+
+Adding `private` to a property
+
+- adding `private` to funds means that funds cannot be mutated directly from outside of the struct
+- neither read or write will work on `funds`
+
+```
+struct BankAccount {
+    private var funds = 0
+
+    mutating func deposit(amount: Int) {
+        funds += amount
+    }
+
+    mutating func withdraw(amount: Int) -> Bool {
+        if funds > amount {
+            funds -= amount
+            return true
+        } else {
+            return false
+        }
+    }
+}
+```
+
+private(set)
+
+- means "let anyone read this property but only let internal methods write to it"
+
+`static` keyword
+
+- static means both the studentCount and add() methods belong to the School struct itself rather than to individual instances of the struct
+- static does not exist uniquely on instances of the struct
+- static methods/properties cannot refer to non-static methods or properties
+- non-static methods/properties must always use the type's name before accessing, eg School.studentCount
+
+```
+struct School {
+    static var studentCount = 0
+
+    static func add(student: String) {
+        print("\(student) joined the school.")
+        studentCount += 1
+    }
+}
+```
+
+self vs Self
+
+- self is current value of the struct
+- Self refers to the current type
