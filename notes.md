@@ -611,3 +611,86 @@ extension String {
     }
 }
 ```
+
+## Day 14
+
+Optionals
+
+- checks to see if a value exists before using it by unwrapping it
+
+```
+func square(number: Int) -> Int {
+    number * number
+}
+
+var number: Int? = nil
+print(square(number: number))
+```
+
+- that code wont build because an optional is passed into a function that expects a non-optional
+- `if let` statements are a common way to check for values that are optional
+- Swift won't let us use an optional without unwrapping it first
+- Can also be checked with a `guard let `
+
+```
+guard let number = number else {
+    print("Missing input")
+    return
+}
+```
+
+- guard allows us to return early from a function if it doesn't have the proper inputs
+
+Nil Coalescing
+
+```
+let savedData = loadSavedMessage() ?? ""
+```
+
+- if the value preceding the `??` is nil, evaluation falls back to the value on the right
+- can be chained:
+
+```
+let savedData = first() ?? second() ?? ""
+```
+
+- dictionaries offer their own approach, optionally:
+
+```
+let crusherScore = scores["Crusher", default: 0]
+```
+
+Using try? optional to check a functions returned value
+
+```
+func getUser(id: Int) throws -> String {
+    throw UserError.networkFailed
+}
+
+if let user = try? getUser(id: 23) {
+    print("User: \(user)")
+}
+```
+
+- can also work with nil coalescing
+
+```
+let user = (try? getUser(id: 23)) ?? "Anonymous"
+```
+
+- variations for try
+
+```
+do {
+    let result = try runRiskyFunction()
+    print(result)
+} catch {
+    // it failed!
+}
+
+// can be replaces with
+
+if let result = try? runRiskyFunction() {
+    print(result)
+}
+```
