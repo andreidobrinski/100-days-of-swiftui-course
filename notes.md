@@ -569,3 +569,45 @@ Notes on constant instance and property
 - Constant instance, variable property – a signpost that always points to the same user, but their name can change.
 - Variable instance, constant property – a signpost that can point to different users, but their names never change.
 - Variable instance, variable property – a signpost that can point to different users, and those users can also change their names.
+
+## Day 13
+
+Protocols
+
+- like creating a contract that a struct/class must adhere to
+
+```
+protocol Vehicle {
+    var name: String { get }
+    var currentPassengers: Int { get set }
+    func estimateTime(for distance: Int) -> Int
+    func travel(distance: Int)
+}
+```
+
+- `name` property must exist and must be readable
+- `currentPassengers` must be readable and writable
+
+Opaque return types
+
+```
+func getRandomNumber() -> some Equatable {
+    Int.random(in: 1...6)
+}
+```
+
+- some Equatable makes the return type opaque
+- Swift knows the actual data type but we can make our code more flexible
+- gets used in SwiftUI with `some View` being returned
+
+Extensions
+
+- add functionality to an existing type
+
+```
+extension String {
+    func trimmed() -> String {
+        self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+}
+```
