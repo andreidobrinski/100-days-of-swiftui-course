@@ -694,3 +694,8 @@ if let result = try? runRiskyFunction() {
     print(result)
 }
 ```
+
+## SwiftUI
+
+- cannot have more than 10 children inside a parent
+- Group is used to group children
